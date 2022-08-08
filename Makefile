@@ -1,4 +1,4 @@
-APP_NAME="JustinGarfield-HomeInfrastructure/github-actions-runner"
+APP_NAME="justingarfield-homeinfrastructure/github-actions-runner"
 
 .PHONY: help
 help: ## This help.
