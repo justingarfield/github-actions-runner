@@ -11,4 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     steps:
-      - run: docker build . --file Dockerfile --tag justingarfield-homeinfrastructure/github-actions-runner:"$(date +%s)"
+      - uses: actions/checkout@v3
+      - name: Build image
+        run: docker build . --file Dockerfile --tag justingarfield-homeinfrastructure/github-actions-runner:"$(date +%s)"
