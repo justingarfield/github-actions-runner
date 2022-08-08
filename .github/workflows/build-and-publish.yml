@@ -35,4 +35,4 @@ jobs:
           push: true
           tags: |
             ghcr.io/justingarfield-homeinfrastructure/github-actions-runner:latest
-            ghcr.io/justingarfield-homeinfrastructure/github-actions-runner:1.0.0
+            ghcr.io/justingarfield-homeinfrastructure/github-actions-runner:"$(date +%s)"
