@@ -1,0 +1,14 @@
+---
+name: Build and Publish Container Image
+
+on:
+  workflow_run:
+    workflows: [Lint Code Base]
+    types: [completed]
+
+jobs:
+  on-success:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - run: docker build . --file Dockerfile --tag justingarfield-homeinfrastructure/github-actions-runner:"$(date +%s)"

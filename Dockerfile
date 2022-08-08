@@ -5,16 +5,21 @@ FROM ubuntu:22.04
 ARG RUNNER_VERSION="2.294.0"
 
 # update the base packages and add a non-sudo user
-RUN apt-get update && apt-get upgrade -y && useradd -m docker \
+RUN apt-get update && apt-get upgrade -y \
+ && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+   ca-certificates=20211016 \
+   curl=7.81.0 \
+   ansible-core=2.12.0 \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && useradd -m docker
 
 WORKDIR /home/docker
 
 # cd into the user directory, download and unzip the github actions runner
 RUN mkdir actions-runner 
 
-WORKDIR /home/dockeractions-runner
+WORKDIR /home/docker/actions-runner
 
 RUN curl -O -L https://github.com/actions/runner/releases/download/v${RUNNER_VERSION}/actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz \
     && tar xzf ./actions-runner-linux-x64-${RUNNER_VERSION}.tar.gz
