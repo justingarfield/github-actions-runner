@@ -5,11 +5,14 @@ FROM ubuntu:22.04
 ARG RUNNER_VERSION="2.294.0"
 
 # update the base packages and add a non-sudo user
-RUN apt-get update && apt-get upgrade -y \
- && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-   ca-certificates=20211016 \
-   curl=7.81.0 \
-   ansible-core=2.12.0 \
+RUN DEBIAN_FRONTEND=noninteractive \
+  apt-get update \
+  && apt-get upgrade -y
+
+RUN apt-get install -y --no-install-recommends \
+    ca-certificates=20211016 \
+    curl=7.81.0-1ubuntu1.3 \
+    ansible=2.10.7+merged+base+2.10.8+dfsg-1 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && useradd -m docker
