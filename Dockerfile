@@ -13,6 +13,7 @@ RUN apt-get install -y --no-install-recommends \
     ca-certificates=20211016 \
     curl=7.81.0-1ubuntu1.3 \
     ansible=2.10.7+merged+base+2.10.8+dfsg-1 \
+    jq=1.6-2.1ubuntu3 \
  && apt-get clean \
  && rm -rf /var/lib/apt/lists/* \
  && useradd -m docker
