@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  gh-actions-runner:
+    image: ghcr.io/justingarfield-homeinfrastructure/github-actions-runner:latest
+    environment:
+      - PAT=$PAT
+      - ORGANIZATION=$ORGANIZATION
+      - NAME=$NAME
+      - RUNNER_GROUP=$RUNNER_GROUP
+      - WORK=$WORK
+      - LABELS=$LABELS
+    restart: unless-stopped
